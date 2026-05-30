@@ -1,0 +1,8 @@
+require("config.lazy")
+require("config.lsp-keybinds")
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")
+require("config.commands")
+require("config.transparency")
+require("config.builtin-plugins")

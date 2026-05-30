@@ -1,104 +1,57 @@
-@define-color bg    #1a1b26; 
-@define-color fg    #a9b1d6; 
-@define-color blk   #32344a; 
-@define-color red   #f7768e; 
-@define-color grn   #9ece6a; 
-@define-color ylw   #e0af68; 
-@define-color blu   #7aa2f7; 
-@define-color mag   #ad8ee6; 
-@define-color cyn   #0db9d7; 
-@define-color brblk #444b6a; 
-@define-color white #ffffff; 
+@import "colors/gruvbox.css";
 
 * {
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 16px;
-    font-weight: bold;
+  all: unset;
+  font-family: "Jetbrains Mono, monospace";
 }
 
 window#waybar {
-    background-color: @bg;
-    color: @fg;
+  background-color: @bg0;
+  color: @fg;
+  border-radius: 0 0 10px 10px;
+}
+
+#workspaces {
+  min-width: 100px;
+  font-size: 0.4rem;
+  padding: 2px 4px;
+  border-radius: 99px;
 }
 
 #workspaces button {
-    padding: 0 6px;
-    color: @cyn;
-    background: transparent;
-    border-bottom: 3px solid @bg;
+  background-color: @bg4;
+  color: transparent;
+  padding: 0px 5px;
+  border-radius: 99px;
+  margin: 0 2px;
+  min-width: 4px;
 }
+
 #workspaces button.active {
-    color: @cyn;
-    border-bottom: 3px solid @mag;
-}
-#workspaces button.empty {
-    color: @white;
-}
-#workspaces button.empty.active {
-    color: @cyn;
-    border-bottom: 3px solid @mag;
-}
-
-#workspaces button.urgent {
-    background-color: @red;
-}
-
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+  background-color: @blue;
+  min-width: 1.2rem;
+  /* font-weight: 800; */
+  transition: none;
 }
 
 #clock,
-#custom-sep,
-#battery,
-#cpu,
-#memory,
-#disk,
-#network,
-#tray {
-    padding: 0 8px;
-    color: @white;
+#clock#right {
+  margin: 0 15px;
+  font-weight: 700;
+  font-size: 1.12rem;
 }
 
-#custom-sep {
-    color: @brblk;
+.modules-left {
+  margin-left: 12px;
 }
 
-#clock {
-    color: @cyn;
-    border-bottom: 4px solid @cyn;
+.modules-right {
+  margin-right: 12px;
 }
 
-#battery {
-    color: @mag;
-    border-bottom: 4px solid @mag;
-}
-
-#disk {
-    color: @ylw;
-    border-bottom: 4px solid @ylw;
-}
-
-#memory {
-    color: @mag;
-    border-bottom: 4px solid @mag;
-}
-
-#cpu {
-    color: @grn;
-    border-bottom: 4px solid @grn;
-}
-
-#network {
-    color: @blu;
-    border-bottom: 4px solid @blu;
-}
-
-#network.disconnected {
-    background-color: @red;
-}
-
-#tray {
-    background-color: #2980b9;
+#cava {
+  margin: 0 12px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
 }
 

@@ -2,6 +2,7 @@
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR-THEME", "Adwaita")
 
 -- Toolkit Backend
 hl.env("GDK_BACKEND", "wayland,x11,*")

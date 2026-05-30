@@ -53,6 +53,7 @@ in
     shellcheck
     shfmt
     stylua
+    cava
   ];
 
   xdg.configFile = builtins.mapAttrs

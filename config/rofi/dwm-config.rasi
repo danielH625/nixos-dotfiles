@@ -30,7 +30,7 @@ configuration {
     border-color: @bg;
     margin: 0;
     padding: 0;
-    spacing: 0;    
+    spacing: 0;
     highlight: none;
 }
 

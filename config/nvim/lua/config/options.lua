@@ -1,7 +1,7 @@
 -- ============================================================================
 -- OPTIONS
 -- ============================================================================
-vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("gruvbox-material")
 
 require("vim._core.ui2").enable({
 	enable = true,

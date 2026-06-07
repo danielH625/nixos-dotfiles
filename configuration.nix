@@ -71,6 +71,7 @@
     kitty
     hyprpaper
     waybar
+    bibata-cursors
   ];
 
   fonts.packages = with pkgs; [

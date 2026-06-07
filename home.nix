@@ -9,6 +9,7 @@ let
     kitty = "kitty";
     waybar = "waybar";
     hypr = "hypr";
+    starship = "starship";
   };
 in
 {
@@ -22,7 +23,54 @@ in
       btw = "echo i use nixos, btw";
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles";
       vim = "nvim";
+      neofetch = "fastfetch";
+      cat = "bat --paging=never";
+      # Git
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit -m";
+      gp = "git push";
+      gl = "git log --oneline --graph --decorate";
+      gco = "git checkout";
+      # eza
+      ls = "eza --icons --group-directories-first";
+      ll = "eza -lah --git --icons --group-directories-first";
+      la = "eza -a --icons --group-directories-first";
+      lt = "eza --tree --level=2 --icons";
+      ltree = "eza --tree --icons";
+      ld = "eza -D --icons";
+      lm = "eza -lah --sort=modified --reverse --icons";
+      lg = "eza -lah --git --icons";
+      # Nix
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles";
+      update = "nix flake update ~/nixos-dotfiles";
+      hms = "home-manager switch --flake ~/nixos-dotfiles";
+      gcn = "sudo nix-collect-garbage -d";
+      ns = "nix-shell";
+      nd = "nix develop";
     };
+    bashrcExtra = ''
+      export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+      eval "$(starship init bash)"
+
+      export MANPAGER='nvim +Man!'
+
+      export EXA_ICONS=1
+      export LS_COLORS="$(vdircolors --print-database 2>/dev/null)"
+
+      eval "$(fzf --bash)"
+
+      cl() {
+        cd "$1" || return
+        eza -lah --git --icons
+      }
+
+      export EDITOR=nvim
+
+      export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :200 {}'"
+      export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap"
+      export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons {}'"
+    '';
   };
   programs.starship = {
     enable = true;
@@ -54,6 +102,11 @@ in
     shfmt
     stylua
     cava
+    brightnessctl
+    eza
+    bat
+    flameshot
+    lazygit
   ];
 
   xdg.configFile = builtins.mapAttrs

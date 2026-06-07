@@ -68,11 +68,6 @@ return {
 					style = "rounded",
 					padding = { 0, 1 },
 				},
-
-				win_options = {
-					winblend = 10,
-					winhighlight = "FloatBorder:MyFloatBorder,FloatTitle:MyFloatTitle",
-				},
 			},
 
 			popupmenu = {
@@ -83,11 +78,6 @@ return {
 				border = {
 					style = "rounded",
 					padding = { 0, 1 },
-				},
-
-				win_options = {
-					winblend = 10,
-					winhighlight = "FloatBorder:MyFloatBorder",
 				},
 			},
 		},

@@ -2,12 +2,12 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
+  . /etc/bashrc
 fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+  PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
 
@@ -16,11 +16,11 @@ export PATH
 
 # User specific aliases and functions
 if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
-    done
+  for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
 fi
 unset rc
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -30,29 +30,34 @@ eval "$(starship init bash)"
 
 export MANPAGER='nvim +Man!'
 
+# nicer default behavior
+export EXA_ICONS=1
+export LS_COLORS="$(vdircolors --print-database 2>/dev/null)"
+
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 
 # LS when you CD
-function cl() {
-  cd "$1" && ls -la
+cl() {
+  cd "$1" || return
+  eza -lah --git --icons
 }
 
 export EDITOR=nvim
 
 # Ctrl-T to fuzzy find files and paste into command line
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :200 {}'"
 # Ctrl-R for better history search
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap"
 # Alt-C to cd into subdirectories
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons {}'"
 
 # -----------
 # ALIASES
 # -----------
 alias neofetch='fastfetch'
 alias vim='nvim'
-alias cat='bat'
+alias cat='bat --paging=never'
 
 # Navigation
 alias ..='cd ..'
@@ -74,3 +79,21 @@ alias gco='git checkout'
 
 # Reload shell config after editing
 alias reload='source ~/.bashrc'
+
+# ---- EZA (modern ls) ----
+alias ls='eza --icons --group-directories-first'
+alias ll='eza -lah --git --icons --group-directories-first'
+alias la='eza -a --icons --group-directories-first'
+alias lt='eza --tree --level=2 --icons'
+alias ltree='eza --tree --icons'
+alias ld='eza -D --icons'
+alias lm='eza -lah --sort=modified --reverse --icons'
+alias lg='eza -lah --git --icons'
+
+# Nix
+alias rebuild='sudo nixos-rebuild switch --flake ~/nixos-dotfiles'
+alias update='nix flake update ~/nixos-dotfiles'
+alias hms='home-manager switch --flake ~/nixos-dotfiles'
+alias gcn='sudo nix-collect-garbage -d'
+alias ns='nix-shell'
+alias nd='nix develop'

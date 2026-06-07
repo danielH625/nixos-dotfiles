@@ -31,7 +31,6 @@ return {
 				zindex = 50,
 				wo = {
 					winblend = 10,
-					winhighlight = "FloatBorder:MyFloatBorder,FloatTitle:MyFloatTitle",
 				},
 			},
 
@@ -41,16 +40,12 @@ return {
 				height = 0.9,
 				width = 0.9,
 				zindex = 50,
-				wo = {
-					winhighlight = "FloatBorder:MyFloatBorder,FloatTitle:MyFloatTitle",
-				},
 			},
 
 			notification = {
 				border = "rounded",
 				wo = {
 					winblend = 10,
-					winhighlight = "FloatBorder:MyFloatBorder,FloatTitle:MyFloatTitle",
 				},
 			},
 
@@ -58,7 +53,6 @@ return {
 				border = "rounded",
 				wo = {
 					winblend = 10,
-					winhighlight = "FloatBorder:MyFloatBorder,FloatTitle:MyFloatTitle",
 				},
 			},
 		},

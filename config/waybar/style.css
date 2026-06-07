@@ -52,6 +52,21 @@ window#waybar {
 #cava {
   margin: 0 12px;
   font-size: 0.7rem;
+  color: @orange;
   letter-spacing: 1px;
+}
+
+#battery {
+  color: @green;
+  margin-left: 15px;
+}
+
+#network {
+  color: @purple;
+  margin-left: 15px;
+}
+
+#pulseaudio {
+  color: @yellow;
 }
 

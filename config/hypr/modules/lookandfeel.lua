@@ -17,7 +17,7 @@ hl.config({
 		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
 		allow_tearing = false,
 
-		layout = "monocle", -- I REALLY like this one. Ill use later
+		layout = "dwindle",
 	},
 
 	decoration = {

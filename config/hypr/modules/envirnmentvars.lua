@@ -1,8 +1,10 @@
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
+-- hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("XCURSOR-THEME", "Adwaita")
+-- hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
+-- hl.env("HYPRCURSOR_SIZE", "24")
 
 -- Toolkit Backend
 hl.env("GDK_BACKEND", "wayland,x11,*")

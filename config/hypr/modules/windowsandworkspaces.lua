@@ -36,9 +36,9 @@ hl.window_rule({
 -- overlayLayerRule:set_enabled(false)
 
 hl.layer_rule({
-	name = "waybar-no-blur",
 	match = { namespace = "waybar" },
 	blur = false,
+	no_anim = true,
 })
 
 -- Hyprland-run windowrule

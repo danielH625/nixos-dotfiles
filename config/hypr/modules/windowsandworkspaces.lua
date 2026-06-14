@@ -35,6 +35,12 @@ hl.window_rule({
 -- })
 -- overlayLayerRule:set_enabled(false)
 
+hl.layer_rule({
+	name = "waybar-no-blur",
+	match = { namespace = "waybar" },
+	blur = false,
+})
+
 -- Hyprland-run windowrule
 hl.window_rule({
 	name = "move-hyprland-run",
@@ -42,4 +48,24 @@ hl.window_rule({
 
 	move = "20 monitor_h-120",
 	float = true,
+})
+
+hl.layer_rule({
+	name = "rofi-dropdown",
+	match = { namespace = "rofi" },
+	animation = "slide bottom",
+	dim_around = true,
+})
+
+hl.window_rule({
+	name = "satty-float",
+	match = { namespace = "satty" },
+	float = true,
+	center = false,
+})
+
+hl.layer_rule({
+	name = "swaync-dropdown",
+	match = { namespace = "swaync-control-center" },
+	animation = "slide top",
 })

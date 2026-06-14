@@ -56,10 +56,19 @@
     packages = with pkgs; [];
   };
 
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+  };
+  services.greetd = {
+      enable = true;
+      settings = {
+          default_session = {
+              command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
+              user = "greeter";
+          };
+      };
   };
 
   # List packages installed in system profile. To search, run:
@@ -70,13 +79,18 @@
     git
     kitty
     hyprpaper
+    hypridle
+    hyprlock
     waybar
     bibata-cursors
+    geist-font
   ];
 
+  fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     nerd-fonts.caskaydia-mono
     nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

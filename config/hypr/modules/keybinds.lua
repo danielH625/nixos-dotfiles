@@ -1,8 +1,10 @@
 -- Set programs that you use
 local terminal = "kitty"
 local fileManager = "dolphin"
-local menu = "rofi -show drun"
+local menu = "~/.config/rofi/type-2/launcher.sh"
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local screenshot_snippet = "hyprshot -m region --raw | satty --filename -"
+local swaync = "swaync-client -t"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
@@ -73,3 +75,24 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+-- Screenshots
+hl.bind("Print", hl.dsp.exec_cmd(screenshot_snippet))
+
+-- Notificaton menu
+hl.bind(mainMod .. " + N ", hl.dsp.exec_cmd(swaync))
+
+-- Monitor switch on lid close check
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("~/.config/hypr/scripts/lid.sh close"), { locked = true })
+hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("~/.config/hypr/scripts/lid.sh open"), { locked = true })
+
+-- Disable laptop monitor
+local function mToggle()
+	if hl.get_monitor("eDP-1") ~= nil then
+		hl.monitor({ output = "eDP-1", disabled = true })
+	else
+		hl.monitor({ output = "eDP-1", disabled = false })
+	end
+end
+
+hl.bind(mainMod .. " + SHIFT + M", mToggle)

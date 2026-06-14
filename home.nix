@@ -4,12 +4,14 @@ let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
   configs = {
+    wallpaper = "wallpaper";
     nvim = "nvim";
     rofi = "rofi";
     kitty = "kitty";
     waybar = "waybar";
     hypr = "hypr";
     starship = "starship";
+    swaync = "swaync";
   };
 in
 {
@@ -85,6 +87,7 @@ in
     rofi
     starship
     python3
+    go
     unzip
     cargo
     fzf
@@ -105,8 +108,14 @@ in
     brightnessctl
     eza
     bat
-    flameshot
     lazygit
+    satty
+    hyprshot
+    impala
+    swaynotificationcenter
+    hyprpolkitagent
+    brave
+    adwaita-icon-theme
   ];
 
   xdg.configFile = builtins.mapAttrs

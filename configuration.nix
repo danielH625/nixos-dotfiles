@@ -88,7 +88,7 @@
 
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
-    nerd-fonts.caskaydia-mono
+    nerd-fonts.caskaydia-cove
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
   ];

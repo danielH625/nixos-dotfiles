@@ -64,6 +64,13 @@ hl.window_rule({
 	center = false,
 })
 
+hl.window_rule({
+	name = "brave-start-full",
+	match = { namespace = "barve-browser" },
+	float = false,
+	center = true,
+})
+
 hl.layer_rule({
 	name = "swaync-dropdown",
 	match = { namespace = "swaync-control-center" },

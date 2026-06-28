@@ -12,6 +12,7 @@ let
     hypr = "hypr";
     starship = "starship";
     swaync = "swaync";
+    satty = "satty";
   };
 in
 {
@@ -86,7 +87,6 @@ in
     nodejs
     rofi
     starship
-    python3
     go
     unzip
     cargo
@@ -111,11 +111,15 @@ in
     lazygit
     satty
     hyprshot
-    impala
     swaynotificationcenter
     hyprpolkitagent
     brave
     adwaita-icon-theme
+    wl-clipboard
+    file
+    (python314.withPackages (ps: with ps; [
+      debugpy
+    ]))
   ];
 
   xdg.configFile = builtins.mapAttrs

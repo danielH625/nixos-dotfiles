@@ -120,6 +120,7 @@ in
     (python314.withPackages (ps: with ps; [
       debugpy
     ]))
+    hyprmoncfg
   ];
 
   xdg.configFile = builtins.mapAttrs

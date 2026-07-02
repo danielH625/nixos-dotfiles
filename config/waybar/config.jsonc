@@ -20,10 +20,10 @@
       "3": "",
       "4": "",
       "5": ""
+    },
+    "persistent-workspaces": {
+      "*": 5
     }
-    // "persistent-workspaces": {
-    //   "*": 5
-    // }
   },
     "battery": {
       "interval": 60,

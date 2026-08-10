@@ -27,7 +27,7 @@ in
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles";
       vim = "nvim";
       neofetch = "fastfetch";
-      cat = "bat --paging=never";
+      cat = "bat";
       # Git
       gs = "git status";
       ga = "git add";
@@ -121,6 +121,7 @@ in
       debugpy
     ]))
     hyprmoncfg
+    tealdeer
   ];
 
   xdg.configFile = builtins.mapAttrs

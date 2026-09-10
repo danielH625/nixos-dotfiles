@@ -6,6 +6,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local screenshot_snippet = "hyprshot -m region --raw | satty --filename -"
 local swaync = "swaync-client -t"
 local lock_screen = "pidof hyprlock || hyprlock"
+local browser = "brave"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
@@ -21,12 +22,15 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + L", hl.dsp.layout("cyclenext")) -- monocle only
+hl.bind(mainMod .. " + H", hl.dsp.layout("cycleprev")) -- monocle only
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -85,16 +89,16 @@ hl.bind("Print", hl.dsp.exec_cmd(screenshot_snippet))
 hl.bind(mainMod .. " + N ", hl.dsp.exec_cmd(swaync))
 
 -- Monitor switch on lid close check
-hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("~/.config/hypr/scripts/lid.sh close"), { locked = true })
-hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("~/.config/hypr/scripts/lid.sh open"), { locked = true })
+-- hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("~/.config/hypr/scripts/lid.sh close"), { locked = true })
+-- hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("~/.config/hypr/scripts/lid.sh open"), { locked = true })
 
 -- Disable laptop monitor
-local function mToggle()
-	if hl.get_monitor("eDP-1") ~= nil then
-		hl.monitor({ output = "eDP-1", disabled = true })
-	else
-		hl.monitor({ output = "eDP-1", disabled = false })
-	end
-end
-
-hl.bind(mainMod .. " + SHIFT + M", mToggle)
+-- local function mToggle()
+-- 	if hl.get_monitor("eDP-1") ~= nil then
+-- 		hl.monitor({ output = "eDP-1", disabled = true })
+-- 	else
+-- 		hl.monitor({ output = "eDP-1", disabled = false })
+-- 	end
+-- end
+--
+-- hl.bind(mainMod .. " + SHIFT + M", mToggle)

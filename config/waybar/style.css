@@ -73,4 +73,37 @@ window#waybar {
 #memory {
   color: @aqua
 }
+/* Tooltip box sizing, background, and font */
+tooltip {
+  background-color: @bg0;
+  border: 2px solid @bg4;
+  border-radius: 8px;
+  padding: 14px 18px;
+}
 
+tooltip label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.3rem; /* Increase to 1.2rem or 1.3rem if you want it even bigger */
+  color: @fg;
+}
+
+/* Calendar component styling using your Gruvbox palette */
+.calendar-months {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: @yellow;
+}
+
+.calendar-weekdays {
+  font-weight: bold;
+  color: @orange;
+}
+
+.calendar-days {
+  color: @fg;
+}
+
+.calendar-today {
+  font-weight: bold;
+  color: @blue;
+}

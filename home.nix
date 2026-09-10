@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
@@ -28,6 +28,7 @@ in
       vim = "nvim";
       neofetch = "fastfetch";
       cat = "bat";
+      icat = "kitty icat";
       # Git
       gs = "git status";
       ga = "git add";
@@ -122,6 +123,9 @@ in
     ]))
     hyprmoncfg
     tealdeer
+    quickshell
+    btop
+    proton-vpn-cli
   ];
 
   xdg.configFile = builtins.mapAttrs

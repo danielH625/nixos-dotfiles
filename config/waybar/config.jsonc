@@ -3,7 +3,7 @@
     "width": 1000,
     "modules-left": ["pulseaudio", "cava"],
     "modules-center": ["clock", "hyprland/workspaces", "clock#right"],
-    "modules-right": ["memory", "network", "battery"],
+    "modules-right": ["memory", "network", "network#vpn", "battery"],
 
     "clock": {
         "format": "{:%H}",
@@ -114,6 +114,13 @@
       // "on-click-right": "pkill nm-applet",
       // "on-scroll-up": "nmcli radio wifi on",
       // "on-scroll-down": "nmcli radio wifi off"
+    },
+    "network#vpn": {
+      "interface": "proton*",
+      "format": "{ifname} 󰦝 ",
+      "format-disconnected": "",
+      "tooltip-format": "VPN Connected: {ipaddr}",
+      "tooltip-format-disconnected": "VPN Disconnected"
     },
     "bluetooth": {
       "format": " 󰂯 ",

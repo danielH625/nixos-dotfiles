@@ -3,7 +3,7 @@
     "width": 1000,
     "modules-left": ["pulseaudio", "cava"],
     "modules-center": ["clock", "hyprland/workspaces", "clock#right"],
-    "modules-right": ["memory", "network", "network#vpn", "battery"],
+    "modules-right": ["memory", "custom/network", "custom/protonvpn", "battery"],
 
     "clock": {
         "format": "{:%H}",
@@ -45,9 +45,7 @@
       "format-charging": "{capacity}% {icon} ",
       "format-icons": {
           "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-          "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-          "plugged": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-          "not charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+          "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
     }
   },
     "pulseaudio": {
@@ -92,35 +90,19 @@
                  "on-click-right": "mode"
                  }
   },
-    "network": {
-      "format-wifi": "{essid} {icon}",
-      "format-ethernet": "{ifname} 󰈀 ",
-      "format-linked": "󰈀 ",
-      "format-disconnected": "󰤣 ",
-      "format-disabled": "󰤮 ",
-      "format-icons": [
-        "󰤯 ",
-        "󰤟 ",
-        "󰤢 ",
-        "󰤥 ",
-        "󰤨 "
-      ],
-      "tooltip-format-disconnected": "No Connection",
-      "tooltip-format-disabled": "Wi-Fi is OFF",
-      "tooltip-format-wifi": "󱄙  {essid} ({signalStrength}%)\n󰐻  Freq: {frequency}GHz\n{ipaddr}/{cidr}, {netmask}",
-      "tooltip-format-ethernet": "󰈀  {ifname} (Connected)\n{ipaddr}/{cidr}, {netmask}",
-      "tooltip-format-linked": "󱘖 {ifname}: No IP Address",
-      "on-click": "kitty -e nmtui"
-      // "on-click-right": "pkill nm-applet",
-      // "on-scroll-up": "nmcli radio wifi on",
-      // "on-scroll-down": "nmcli radio wifi off"
-    },
-    "network#vpn": {
-      "interface": "proton*",
-      "format": "{ifname} 󰦝 ",
-      "format-disconnected": "",
-      "tooltip-format": "VPN Connected: {ipaddr}",
-      "tooltip-format-disconnected": "VPN Disconnected"
+  "custom/network": {
+    "exec": "~/.config/waybar/scripts/network.sh",
+    "return-type": "json",
+    "interval": 3,
+    "format": "{}",
+    "on-click": "kitty -e nmtui"
+  },
+    "custom/protonvpn": {
+      "exec": "~/.config/waybar/scripts/protonvpn.sh",
+      "return-type": "json",
+      "interval": 5,
+      "format": "{}",
+      "on-click": "protonvpn disconnect"
     },
     "bluetooth": {
       "format": " 󰂯 ",

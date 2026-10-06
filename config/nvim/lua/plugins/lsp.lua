@@ -31,12 +31,20 @@ return {
 		vim.lsp.config("pyright", {})
 		vim.lsp.config("ruff", {})
 		vim.lsp.config("bashls", {})
+		vim.lsp.config("clangd", {
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--clang-tidy",
+			},
+		})
 
 		vim.lsp.enable({
 			"lua_ls",
 			"pyright",
 			"ruff",
 			"bashls",
+			"clangd",
 		})
 	end,
 }

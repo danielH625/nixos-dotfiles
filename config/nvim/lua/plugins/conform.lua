@@ -8,6 +8,8 @@ return {
 				python = { "ruff_format" },
 				markdown = { "prettierd" },
 				sh = { "shfmt" },
+				c = { "clang_format" },
+				cpp = { "clang_format" },
 			},
 
 			format_on_save = {

@@ -61,9 +61,26 @@ window#waybar {
   margin-left: 5px;
 }
 
-#network {
-  color: @purple;
-  margin-left: 5px;
+/* Physical network */
+#custom-network {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 0 5px;
+}
+
+/* Wi-Fi */
+#custom-network.wifi {
+    color: @purple;
+}
+
+/* Ethernet */
+#custom-network.ethernet {
+    color: @purple;
+}
+
+/* Disconnected */
+#custom-network.disconnected {
+    color: @grey1;
 }
 
 #pulseaudio {
@@ -106,4 +123,15 @@ tooltip label {
 .calendar-today {
   font-weight: bold;
   color: @blue;
+}
+#custom-protonvpn {
+    padding: 0 8px;
+}
+
+#custom-protonvpn.connected {
+    color: @blue;
+}
+
+#custom-protonvpn.connected:hover {
+    color: @yellow;
 }

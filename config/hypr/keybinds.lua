@@ -7,6 +7,7 @@ local screenshot_snippet = "hyprshot -m region --raw | satty --filename -"
 local swaync = "swaync-client -t"
 local lock_screen = "pidof hyprlock || hyprlock"
 local browser = "brave"
+local waybar_reload = "pkill waybar; waybar &"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
@@ -23,6 +24,7 @@ hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(waybar_reload))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))

@@ -84,7 +84,6 @@ in
   home.packages = with pkgs; [
     neovim
     ripgrep
-    gcc
     nodejs
     rofi
     starship
@@ -105,6 +104,8 @@ in
     shellcheck
     shfmt
     stylua
+    clang
+    clang-tools
     cava
     brightnessctl
     eza
@@ -126,6 +127,8 @@ in
     quickshell
     btop
     proton-vpn-cli
+    jq
+    p7zip
   ];
 
   xdg.configFile = builtins.mapAttrs

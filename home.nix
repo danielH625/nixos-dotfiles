@@ -13,6 +13,10 @@ let
     starship = "starship";
     swaync = "swaync";
     satty = "satty";
+    hyprmoncfg = "hyprmoncfg";
+    btop = "btop";
+    cava = "cava";
+    lazygit = "lazygit";
   };
 in
 {

@@ -80,6 +80,87 @@ in
       export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons {}'"
     '';
   };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    syntaxHighlighting = {
+      enable = true;
+    };
+
+    shellAliases = {
+      vim = "nvim";
+      cat = "bat";
+      lg = "lazygit";
+      
+      ls = "eza --icons --group-directories-first";
+      ll = "eza -lah --git --icons --group-directories-first";
+      la = "eza -a --icons --group-directories-first";
+      lt = "eza --tree --level=2 --icons";
+      ltree = "eza --tree --icons";
+      ld = "eza -D --icons";
+      lm = "eza -lah --sort=modified --reverse --icons";
+      
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles";
+      update = "nix flake update ~/nixos-dotfiles";
+      hms = "home-manager switch --flake ~/nixos-dotfiles";
+      gcn = "sudo nix-collect-garbage -d";
+      ns = "nix-shell";
+      nd = "nix develop";
+    };
+
+    initContent = ''
+      # Options
+      setopt append_history
+      setopt share_history
+      setopt hist_ignore_dups
+      setopt hist_expire_dups_first
+      setopt hist_find_no_dups
+      setopt hist_reduce_blanks
+      setopt no_beep
+
+      # History
+      HISTFILE="$HOME/.zsh_history"
+      HISTSIZE=1000000
+      SAVEHIST=1000000
+      bindkey '^K' up-line-or-history
+      bindkey '^J' down-line-or-history
+
+      # FZF
+      source <(fzf --zsh)
+      
+      # FZF Overrides
+      export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :200 {}'"
+      export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap"
+      export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons {}'"
+
+      export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+      eval "$(starship init zsh)"
+
+      export MANPAGER='nvim +Man!'
+
+      export EXA_ICONS=1
+      export LS_COLORS="$(vdircolors --print-database 2>/dev/null)"
+
+      cl() {
+        cd "$1" || return
+        eza -lah --git --icons
+      }
+
+      export EDITOR=nvim
+
+      # Deja
+      if [[ -r "$HOME/.local/share/deja/init.zsh" ]]; then
+        source "$HOME/.local/share/deja/init.zsh"
+      else
+        eval "$(deja init zsh)"
+      fi
+
+      # Zoxide
+      eval "$(zoxide init zsh)"
+    '';
+  };
+
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
@@ -133,6 +214,9 @@ in
     proton-vpn-cli
     jq
     p7zip
+    zsh-syntax-highlighting
+    deja
+    zoxide
   ];
 
   xdg.configFile = builtins.mapAttrs

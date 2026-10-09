@@ -53,9 +53,11 @@
     isNormalUser = true;
     description = "danil";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
+  programs.zsh.enable = true;
   # programs.firefox.enable = true;
   programs.hyprland = {
     enable = true;

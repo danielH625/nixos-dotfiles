@@ -50,12 +50,12 @@ hl.window_rule({
 	float = true,
 })
 
-hl.layer_rule({
-	name = "rofi-dropdown",
-	match = { namespace = "rofi" },
-	animation = "slide bottom",
-	dim_around = true,
-})
+-- hl.layer_rule({
+-- 	name = "rofi-dropdown",
+-- 	match = { namespace = "rofi" },
+-- 	animation = "slide bottom",
+-- 	dim_around = true,
+-- })
 
 hl.window_rule({
 	name = "satty-float",
@@ -71,8 +71,68 @@ hl.window_rule({
 	center = true,
 })
 
-hl.layer_rule({
-	name = "swaync-dropdown",
-	match = { namespace = "swaync-control-center" },
-	animation = "slide top",
+-- hl.layer_rule({
+-- 	name = "swaync-dropdown",
+-- 	match = { namespace = "swaync-control-center" },
+-- 	animation = "slide top",
+-- })
+
+hl.window_rule({
+	name = "float_satty",
+	match = {
+		class = "com.gabm.satty",
+	},
+	float = true,
+	size = {
+		"monitor_w * 0.8",
+		"monitor_h * 0.8",
+	},
+	center = true,
 })
+
+hl.window_rule({
+	name = "floating_workspace",
+	match = {
+		workspace = "5",
+	},
+	float = true,
+	size = "800 600",
+	center = true,
+})
+
+hl.window_rule({
+	name = "float_gtk_file_picker",
+	match = {
+		initial_class = "^xdg-desktop-portal-gtk$",
+	},
+	float = true,
+	size = {
+		"monitor_w * 0.6",
+		"monitor_h * 0.6",
+	},
+	center = true,
+})
+
+hl.window_rule({
+	name = "pocket-settings",
+	match = {
+		class = "^(org\\.quickshell)$",
+		title = "^(Ajustes)$",
+	},
+	float = true,
+	size = "monitor_w*0.9 monitor_h*0.8",
+	center = true,
+})
+
+-- hl.window_rule({
+-- 	name = "float_nmtui",
+-- 	match = {
+-- 		initial_title = "^nmtui$",
+-- 	},
+-- 	float = true,
+-- 	size = {
+-- 		"monitor_w * 0.8",
+-- 		"monitor_h * 0.8",
+-- 	},
+-- 	center = true,
+-- })

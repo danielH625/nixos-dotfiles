@@ -2,7 +2,7 @@
 hl.config({
 	general = {
 		gaps_in = 2,
-		gaps_out = 5,
+		gaps_out = 10,
 
 		border_size = 2,
 
@@ -17,11 +17,11 @@ hl.config({
 		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
 		allow_tearing = false,
 
-		layout = "monocle",
+		layout = "scrolling",
 	},
 
 	decoration = {
-		rounding = 5,
+		rounding = 6,
 		rounding_power = 2,
 
 		-- Change transparency of focused and unfocused windows
@@ -115,6 +115,11 @@ hl.config({
 hl.config({
 	scrolling = {
 		fullscreen_on_one_column = true,
+		column_width = 1.0,
+		explicit_column_widths = "0.5, 1.0",
+		wrap_focus = true,
+		wrap_swapcol = true,
+		direction = "right",
 	},
 })
 

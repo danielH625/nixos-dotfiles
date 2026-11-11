@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
@@ -17,6 +17,8 @@ let
     cava = "cava";
     lazygit = "lazygit";
     zsh = "zsh";
+    uwsm = "uwsm";
+    quickshell = "quickshell";
   };
 in
 {
@@ -81,10 +83,8 @@ in
     '';
   };
 
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-  };
+  dconf.enable = true;
+
 
   home.packages = with pkgs; [
     neovim
@@ -140,6 +140,8 @@ in
     zsh-history-substring-search
     zsh-vi-mode
     zsh-fast-syntax-highlighting
+    gruvbox-gtk-theme
+    tailscale
   ];
 
 
@@ -158,6 +160,46 @@ home.file.".local/share/zsh/nix-plugins.zsh".text = ''
   # Syntax highlighting — load last
   source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 '';
+
+  # Initialize the wallpaper selection after our config links are created.
+  # Rebuilds preserve whatever wallpaper was selected in the UI.
+  home.activation.initializeWallpaper =
+    lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+      wallpaper_state="$HOME/.local/state/quickshell"
+      wallpaper_default="$HOME/.config/wallpaper/and-so-it-begins.webp"
+
+      run ${pkgs.coreutils}/bin/mkdir -p "$wallpaper_state"
+
+      if [ ! -e "$wallpaper_state/current-wallpaper" ] \
+         && [ ! -L "$wallpaper_state/current-wallpaper" ]; then
+        run ${pkgs.coreutils}/bin/ln -s \
+          "$wallpaper_default" \
+          "$wallpaper_state/current-wallpaper"
+      fi
+    '';
+
+  # Apply user-service changes automatically during Home Manager activation.
+  systemd.user.startServices = "sd-switch";
+
+  # Start monitor management with the graphical session.
+  systemd.user.services.hyprmoncfgd = {
+    Unit = {
+      Description = "Hyprland monitor profile daemon";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+      ConditionEnvironment = "HYPRLAND_INSTANCE_SIGNATURE";
+    };
+
+    Service = {
+      ExecStart = "${pkgs.hyprmoncfg}/bin/hyprmoncfgd";
+      Restart = "on-failure";
+      RestartSec = 2;
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
 
 # place the symlinks for the dotfiles
   xdg.configFile = builtins.mapAttrs

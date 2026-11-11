@@ -23,6 +23,7 @@ alias cat='bat'
 alias grep='rg --color=auto'
 alias diff='diff --color=auto'
 alias df='df -h'
+alias pdf='xdg-open'
 
 # =========================================================
 # Navigation

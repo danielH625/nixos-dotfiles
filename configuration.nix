@@ -24,6 +24,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
@@ -76,18 +82,24 @@
     enable = true;
     xwayland.enable = true;
   };
+  programs.hyprland.withUWSM = true;
   services.greetd = {
-      enable = true;
-      settings = {
-          default_session = {
-              command = "${pkgs.tuigreet}/bin/tuigreet --cmd start-hyprland";
-              user = "greeter";
-          };
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --cmd '${pkgs.uwsm}/bin/uwsm start hyprland.desktop'";
+        user = "greeter";
       };
+    };
   };
 
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
+
+  services.tailscale.enable = true;
+
+  services.upower.enable = true;
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

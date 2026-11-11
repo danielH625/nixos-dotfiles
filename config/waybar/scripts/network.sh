@@ -27,7 +27,7 @@ fi
 # Nothing connected.
 if [[ -z "$active_iface" ]]; then
   jq -cn \
-    '{text: "", tooltip: "Network: Disconnected", class: "disconnected"}'
+    '{text: "󰤮", tooltip: "Network: Disconnected\nClick to connect to Wi-Fi", class: "disconnected"}'
   exit 0
 fi
 

@@ -26,6 +26,7 @@
 
     "hyprland/workspaces": {
     "format": "{icon}",
+    "on-click": "activate",
     "format-icons": {
       "1": "",
       "2": "",
@@ -95,7 +96,7 @@
     "return-type": "json",
     "interval": 3,
     "format": "{}",
-    "on-click": "kitty -e nmtui"
+    "on-click": "kitty -e --title nmtui nmtui"
   },
     "custom/protonvpn": {
       "exec": "~/.config/waybar/scripts/protonvpn.sh",

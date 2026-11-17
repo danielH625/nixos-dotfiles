@@ -125,6 +125,24 @@ Singleton {
 
     readonly property int restW: root.mediaLive ? root.mediaW : root.idleW
 
+    // Share visual geometry only; this file has no lock/authentication authority.
+    FileView {
+        id: lockGeometryFile
+        path: Quickshell.env("XDG_RUNTIME_DIR") + "/quickshell-notch-geometry.json"
+        printErrors: false
+    }
+    function publishLockGeometry() {
+        if (!Quickshell.env("XDG_RUNTIME_DIR")) return;
+        lockGeometryFile.setText(JSON.stringify({ width: root.restW }));
+    }
+    onRestWChanged: lockGeometryPublish.restart()
+    Timer {
+        id: lockGeometryPublish
+        interval: 0
+        onTriggered: root.publishLockGeometry()
+    }
+
+
     property int launcherRows: 0
     property bool launcherCalc: false
     property bool launcherFavs: false
@@ -405,7 +423,7 @@ Singleton {
         }
     }
     function reseedMonitor(): void { monSeed.running = false; monSeed.running = true; }
-    Component.onCompleted: root.reseedMonitor()
+    Component.onCompleted: { root.reseedMonitor(); lockGeometryPublish.start(); }
 
     Timer { id: awwwHotplug }
 
@@ -1161,7 +1179,8 @@ Singleton {
           keys: "wallpaper wallpapers background image picture"
         },
         { kind: "cmd", id: "lock", icon: Icons.lock, name: I18n.tr("Bloquear pantalla"),
-          desc: "hyprlock",
+          // desc: "hyprlock",
+          desc: "loginctl lock-session",
           keys: "lock bloquear candado lock screen padlock" },
         { kind: "cmd", id: "wifi", icon: Icons.wifi, name: I18n.tr("Wifi"),
           desc: I18n.tr("Redes disponibles"),
@@ -1226,7 +1245,8 @@ Singleton {
 
         root.closePanel();
         switch (a.id) {
-        case "lock":  Quickshell.execDetached(["hyprlock"]); break;
+        // case "lock":  Quickshell.execDetached(["hyprlock"]); break;
+        case "lock":  Quickshell.execDetached(["loginctl", "lock-session"]); break;
         }
     }
 

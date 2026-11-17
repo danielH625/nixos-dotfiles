@@ -19,6 +19,8 @@ let
     zsh = "zsh";
     uwsm = "uwsm";
     quickshell = "quickshell";
+    quickshell-lock = "quickshell-lock";
+    "quickshell-settings.json" = "quickshell-settings.json";
   };
 in
 {
@@ -85,6 +87,13 @@ in
 
   dconf.enable = true;
 
+  home.pointerCursor = {
+    name = "Capitaine Cursors (Gruvbox)";
+    package = pkgs.capitaine-cursors-themed;
+    size = 32;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
   home.packages = with pkgs; [
     neovim

@@ -19,7 +19,8 @@ Item {
     property int current: 0
 
     readonly property var items: [
-        { icon: "󰌾", label: I18n.tr("Bloquear"),  cmd: "hyprlock",              danger: false },
+        // { icon: "󰌾", label: I18n.tr("Bloquear"),  cmd: "hyprlock",              danger: false },
+        { icon: "󰌾", label: I18n.tr("Bloquear"),  cmd: "loginctl lock-session",              danger: false },
         { icon: "󰤄", label: I18n.tr("Suspender"), cmd: "systemctl suspend",     danger: false },
         // Plain `exit` no longer works: since Hyprland 0.55 the argument to
         // `dispatch` is a Lua expression, and a bare name ends up as nil

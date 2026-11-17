@@ -96,6 +96,12 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
 
+  # Password authentication for the separate Quickshell lock screen.
+  security.pam.services.quickshell-lock = {
+    unixAuth = true;
+    fprintAuth = false;
+  };
+
   services.tailscale.enable = true;
 
   services.upower.enable = true;
@@ -112,7 +118,7 @@
     hypridle
     hyprlock
     waybar
-    bibata-cursors
+    capitaine-cursors-themed
     geist-font
   ];
 

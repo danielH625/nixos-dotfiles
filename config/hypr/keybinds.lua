@@ -2,7 +2,8 @@
 local terminal = "kitty"
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local screenshot_snippet = "hyprshot -m region --raw | satty --filename -"
-local lock_screen = "pidof hyprlock || hyprlock"
+-- local lock_screen = "pidof hyprlock || hyprlock"
+local lock_screen = "loginctl lock-session"
 local browser = "brave"
 -- local waybar_reload = "pkill waybar; waybar &"
 -- local fileManager = "dolphin"
@@ -96,9 +97,9 @@ hl.bind("SUPER + comma", hl.dsp.global("quickshell:settings"))
 hl.bind("SUPER + SHIFT + period", hl.dsp.global("quickshell:system"))
 hl.bind("SUPER + TAB", hl.dsp.global("quickshell:overview"))
 
-hl.bind("SUPER + SHIFT + P", hl.dsp.global("quickshell:power"))
+hl.bind("SUPER + ALT + P", hl.dsp.global("quickshell:power"))
 hl.bind("SUPER + ALT + C", hl.dsp.global("quickshell:calendar"))
-hl.bind("SUPER + SHIFT + M", hl.dsp.global("quickshell:media")) -- Floating media player
+hl.bind("SUPER + ALT + M", hl.dsp.global("quickshell:media")) -- Floating media player
 hl.bind("SUPER + ALT + Space", hl.dsp.global("quickshell:actions")) -- Launcher in > actions mode
 hl.bind("SUPER + ALT + N", hl.dsp.global("quickshell:network")) -- Wi-Fi
 hl.bind("SUPER + ALT + B", hl.dsp.global("quickshell:bluetooth")) -- Bluetooth (needs BlueZ)
@@ -112,7 +113,7 @@ hl.bind("SUPER + Escape", hl.dsp.global("quickshell:close")) -- Close notch pane
 hl.bind("SUPER + F1", hl.dsp.global("quickshell:keybinds"))
 
 -- Monitor configuration
-hl.bind("SUPER + ALT + M", function()
+hl.bind("SUPER + M", function()
 	hl.exec_cmd("uwsm app -- kitty --class pocket-monitors --title 'Monitor configuration' hyprmoncfg")
 end)
 

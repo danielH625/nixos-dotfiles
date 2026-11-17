@@ -1,0 +1,36 @@
+{
+    "appearanceProfiles": [
+    ],
+    "bandH": 30,
+    "batteryAllowIdle": true,
+    "browserMedia": true,
+    "clockSize": 19,
+    "dimOnSaver": true,
+    "displays": {
+    },
+    "energyOnAC": "performance",
+    "energyOnBattery": "power-saver",
+    "favApps": [
+    ],
+    "flare": 13,
+    "fontUI": "Liberation Sans",
+    "hoverDelay": 152,
+    "hoverPreview": true,
+    "idleW": 130,
+    "islandGap": 4,
+    "language": "en",
+    "learnLauncher": true,
+    "notchColor": "theme",
+    "notchStyle": "notch",
+    "reserveSpace": true,
+    "roundMax": 30,
+    "saverBrightness": 40,
+    "scrimAlpha": 0,
+    "showAppName": false,
+    "showArch": true,
+    "showBattery": false,
+    "showDate": false,
+    "showTray": true,
+    "showWorkspaces": true,
+    "sideMargin": 8
+}

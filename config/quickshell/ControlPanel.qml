@@ -231,6 +231,32 @@ Item {
                     }
                 }
                 Item { Layout.fillWidth: true }
+                                Rectangle {
+                    Layout.preferredWidth: 28
+                    Layout.preferredHeight: 28
+                    radius: 8
+                    color: powerMouse.containsMouse
+                        ? Qt.rgba(Colors.accent.r, Colors.accent.g,
+                                  Colors.accent.b, 0.18)
+                        : "transparent"
+
+                    Text {
+                        anchors.centerIn: parent
+                        text: Icons.power
+                        color: powerMouse.containsMouse
+                            ? Colors.accentInk : Colors.label3
+                        font.family: Appearance.font
+                        font.pixelSize: 16
+                    }
+
+                    MouseArea {
+                        id: powerMouse
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: ShellState.togglePanel("power")
+                    }
+                }
                 Text {
                     text: "󰒓"
                     color: gearMa.containsMouse ? Colors.accentInk : Colors.label3

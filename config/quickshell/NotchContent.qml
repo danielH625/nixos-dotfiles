@@ -14,6 +14,7 @@ Item {
         active: root.mode === "media" || root.mode === "idle"
 
         Row {
+            id: idleClockRow
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 horizontalCenterOffset: ShellState.mediaLive ? -52 : 0
@@ -31,6 +32,8 @@ Item {
 
 
                 Text {
+                    id: idleClockSlot
+                    opacity: 0
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.verticalCenterOffset: Appearance.clockNudge(Config.clockSize)
                     text: Qt.formatDateTime(ShellState.now, "HH:mm")
@@ -151,6 +154,7 @@ Item {
         active: root.mode === "peek"
 
         Row {
+            id: peekClockRow
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 horizontalCenterOffset: -26
@@ -161,6 +165,8 @@ Item {
             readonly property int pxPeek: Config.clockSize + 4
 
             Text {
+                id: peekClockSlot
+                opacity: 0
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: Appearance.clockNudge(parent.pxPeek)
                 text: Qt.formatDateTime(ShellState.now, "HH:mm")
@@ -217,6 +223,46 @@ Item {
                 font.weight: Font.Medium
                 font.features: ({ "tnum": 1 })
             }
+        }
+    }
+
+    // Keep the original layout slots; one visible clock travels between them.
+    NotchLayer {
+        id: clockMotion
+        anchors.fill: parent
+        active: root.mode === "idle" || root.mode === "media" || root.mode === "peek"
+
+        property real progress: root.mode === "peek" ? 1 : 0
+        Behavior on progress {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.InOutCubic
+            }
+        }
+
+        readonly property real idleCenter: idleClockRow.x + idleClockSlot.parent.x
+            + idleClockSlot.x + idleClockSlot.width / 2
+        readonly property real peekCenter: peekClockRow.x + peekClockSlot.x
+            + peekClockSlot.width / 2
+
+        Text {
+            objectName: "animatedNotchClock"
+            text: idleClockSlot.text
+            color: idleClockSlot.color
+            font.family: idleClockSlot.font.family
+            font.pixelSize: peekClockSlot.font.pixelSize
+            font.weight: idleClockSlot.font.weight
+            font.features: ({ "tnum": 1 })
+            transformOrigin: Item.Center
+            scale: (idleClockSlot.font.pixelSize
+                + (peekClockSlot.font.pixelSize - idleClockSlot.font.pixelSize)
+                  * clockMotion.progress) / peekClockSlot.font.pixelSize
+            x: clockMotion.idleCenter
+                + (clockMotion.peekCenter - clockMotion.idleCenter) * clockMotion.progress
+                - width / 2
+            y: (parent.height - height) / 2
+                + Appearance.clockNudge(Config.clockSize) * (1 - clockMotion.progress)
+                + Appearance.clockNudge(Config.clockSize + 4) * clockMotion.progress
         }
     }
 
